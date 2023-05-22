@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using EventStruct;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -18,14 +19,24 @@ public class HotUpdate : MonoBehaviour
 
     private int _updateCount = 0;
 
+    public bool isChecked = false;
     public bool isUpdated = false;
     
     
     private void Start()
     {
-        StartCoroutine(CheckAssetsUpdate());
+       
     }
 
+    public void Check()
+    {
+       StartCoroutine( CheckAssetsUpdate());
+    }
+
+    public void UpdateAll()
+    {
+        UpdateAssets();
+    }
 
     IEnumerator CheckAssetsUpdate()
    {
@@ -60,14 +71,8 @@ public class HotUpdate : MonoBehaviour
            }
        }
        
-       Debug.Log("Prepare compare");
        //check and compare 
        CompareVersion();
-
-       Debug.Log("Prepare update");
-       //Update Assets
-       UpdateAssets();
-
    }
 
    private void CompareVersion()
@@ -98,8 +103,10 @@ public class HotUpdate : MonoBehaviour
        {
            //no resource need load
            isUpdated = true;
+       
        }
        Debug.Log("Needed Update count: "+_neededDownLoadList.Count);
+       isChecked = true;
    }
 
 
@@ -133,12 +140,10 @@ public class HotUpdate : MonoBehaviour
         string path =_localAssetsUrl + fileName;
         FileInfo fileInfo = new FileInfo(path);
         FileStream fs = fileInfo.Create();
-
         fs.Write(bytes, 0, bytes.Length);
         fs.Flush();  
         fs.Close();  
-        fs.Dispose(); 
-
+        fs.Dispose();
         if (saveLocalComplate != null)
         {
             saveLocalComplate();

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using EventStruct;
 using UnityEngine;
 using UnityEngine.Networking;
 using Object = UnityEngine.Object;
@@ -29,21 +30,13 @@ public class AssetLoader : MonoBehaviour
     {
         Instance = this;
         // _typeInventory.Add();
-        _typeInventory.Add(AssetType.Lua,"Lua");
-        _typeInventory.Add(AssetType.Clip,"Clip");
-        _typeInventory.Add(AssetType.GameObject,"GameObject");
-        _typeInventory.Add(AssetType.Sprite,"Sprite");
+        _typeInventory.Add(AssetType.Lua,"lua");
+        _typeInventory.Add(AssetType.Clip,"clip");
+        _typeInventory.Add(AssetType.GameObject,"gameobject");
+        _typeInventory.Add(AssetType.Sprite,"sprite");
         
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-        
-    }
-
-
+    
     public void LoadAB(string abName)
     {
         if (!_assetBundles.ContainsKey(abName))
@@ -107,6 +100,9 @@ public class AssetLoader : MonoBehaviour
         }
         else if (_assetBundles.TryGetValue(abName, out AssetBundle assetBundle))
         {
+            Debug.Log("Start load :"+assetName);
+            
+            
             return assetBundle.LoadAsset<T>(assetName);
         }
         else
@@ -115,7 +111,7 @@ public class AssetLoader : MonoBehaviour
 
     public TextAsset LoadLuaText(string luaName)
     {
-        return LoadAsset<TextAsset>(_typeInventory[AssetType.Lua], luaName);
+        return LoadAsset<Object>(_typeInventory[AssetType.Lua], luaName+".lua.txt") as TextAsset;
     }
     public AudioClip LoadClip(string clipName)
     {
@@ -136,6 +132,11 @@ public class AssetLoader : MonoBehaviour
     {
     }
 
+
+    public void ClearObjectCache()
+    {
+        _objectCache.Clear();
+    }
     private void ParseVersionFile(string content, Dictionary<string, string> dict)
     {
         if (string.IsNullOrEmpty(content))

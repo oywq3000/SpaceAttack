@@ -220,7 +220,7 @@ namespace Script.Utility
            
             if (_dictionary.TryGetValue(typeof(T), out IEvent e))
             {
-                Debug.Log("Send Event");
+          
                 ((MyEvent<T>) e).Trigger(t);
             }
         }

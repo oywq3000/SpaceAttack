@@ -20,9 +20,7 @@ namespace DefaultNamespace.Editor
             {
                 Directory.CreateDirectory(serverPath);
             }
-           
-            
-           // BuildPipeline.BuildAssetBundles(localPath, BuildAssetBundleOptions.DeterministicAssetBundle, BuildTarget.StandaloneWindows64);
+            // BuildPipeline.BuildAssetBundles(localPath, BuildAssetBundleOptions.DeterministicAssetBundle, BuildTarget.StandaloneWindows64);
             BuildPipeline.BuildAssetBundles(serverPath,BuildAssetBundleOptions.DeterministicAssetBundle, BuildTarget.StandaloneWindows64);
             AssetDatabase.Refresh();
           //  CreateFileList(localPath);

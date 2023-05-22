@@ -1,13 +1,20 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using EventStruct;
+using Script;
 using Script.Utility;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using XLua;
 
+[Hotfix]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     private IEventHolder _eventHolder;
+  
+    [HideInInspector] public LuaTool luaTool;
 
 
     private void Awake()
@@ -23,6 +30,7 @@ public class GameManager : MonoBehaviour
         #region Init
 
         _eventHolder = new EventHolder();
+        luaTool = new LuaTool();
 
         #endregion
 
@@ -33,8 +41,20 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        RegisterEvent<OnUpdated>(AfterUpdate);
     }
 
+    void AfterUpdate(OnUpdated e)
+    {
+        AssetLoader.Instance.LoadAB("lua");
+        
+        //start hotfix
+        luaTool.DoString("Main");
+
+        //entry start scene
+        SceneManager.LoadScene("Start");
+    }
+    
 
     public IUnRegister RegisterEvent<T>(Action<T> action) where T : new()
     {
