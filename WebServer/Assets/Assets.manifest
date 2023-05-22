@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 1369723962
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: effect.frist
+      Dependencies: {}
+    Info_1:
+      Name: music
+      Dependencies: {}
+    Info_2:
+      Name: cube1
+      Dependencies: {}
+    Info_3:
+      Name: sene
+      Dependencies:
+        Dependency_0: effect.frist
+        Dependency_1: cube1

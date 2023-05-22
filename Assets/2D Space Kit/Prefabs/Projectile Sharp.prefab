@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6100000}
   - component: {fileID: 11400000}
   - component: {fileID: 9600000}
+  - component: {fileID: -5745533863995952951}
   m_Layer: 0
   m_Name: Projectile Sharp
   m_TagString: Projectile
@@ -125,6 +126,7 @@ MonoBehaviour:
   shoot_effect: {fileID: 100002, guid: 565cdc2ed7b030a41accd8f00ae59a50, type: 3}
   hit_effect: {fileID: 100002, guid: cafecd3fc3b761c45bb1553f35cf5c96, type: 3}
   firing_ship: {fileID: 0}
+  speed: 10
 --- !u!96 &9600000
 TrailRenderer:
   serializedVersion: 2
@@ -231,3 +233,24 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 1
   m_Emitting: 1
+--- !u!50 &-5745533863995952951
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

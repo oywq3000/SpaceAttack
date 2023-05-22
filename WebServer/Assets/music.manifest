@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 3548385563
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 31f38ab313b8565f5dc79cfd8f5c3d77
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 3f7d0c5e0986ec71841622bcb2f9be1c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- "Assets/WANGMUXUAN - \u542C\u5B8C\u5C31\u91CA\u6000.ogg"
+- Assets/Kevin Penkin - Classroom.mp3
+Dependencies: []

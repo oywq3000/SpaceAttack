@@ -28,10 +28,15 @@ namespace DefaultNamespace
             }
             
             
-            if (barrelHardpoints != null)
+            if (Input.GetKey(KeyCode.Space)&&barrelHardpoints != null)
             {
+                var rotation = transform.rotation;
                 GameObject bullet = Instantiate(weaponPrefab, barrelHardpoints[_barrelIndex].transform.position,
-                    transform.rotation);
+                    rotation);
+                bullet.GetComponent<Rigidbody2D>().velocity =
+                    new Vector2(Mathf.Cos((rotation.eulerAngles.z+90)/180 *Mathf.PI),
+                        Mathf.Sin((rotation.eulerAngles.z+90)/180 *Mathf.PI)) *
+                    (transform.parent.GetComponent<PlayerController>().currentSpeed + 10);
                // bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.up * shotSpeed);
                 bullet.GetComponent<Projectile>().firing_ship = transform.parent.gameObject;
 
